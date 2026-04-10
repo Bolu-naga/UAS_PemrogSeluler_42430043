@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/bg_gradient"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/ivCarImage"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="16dp"/>
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvDetailTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Mobil Ford"
+                android:textColor="@color/ford_white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvDetailSpecs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spesifikasi mesin, tahun, dan tipe akan ditampilkan di sini saat aplikasi berjalan."
+                android:textColor="@color/ford_gray"
+                android:textSize="16sp"
+                android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kembali"
+                android:backgroundTint="@color/ford_blue_light"
+                android:textColor="@color/ford_white"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
