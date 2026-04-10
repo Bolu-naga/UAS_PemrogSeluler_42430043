@@ -1,19 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
+    android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Katalog Mobil Ford"
+        android:textColor="@color/ford_white"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="16dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Cari mobil (misal: Mustang)..."
+            android:textColorHint="@color/ford_gray"
+            android:textColor="@color/ford_white"
+            android:backgroundTint="@color/ford_white"
+            android:inputType="text"
+            android:padding="12dp"/>
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cari"
+            android:backgroundTint="@color/ford_blue_light"
+            android:textColor="@color/ford_white"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btnSortAsc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Urutkan A-Z"
+            android:backgroundTint="@color/ford_blue_medium"
+            android:textColor="@color/ford_white"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnSortDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Urutkan Z-A"
+            android:backgroundTint="@color/ford_blue_medium"
+            android:textColor="@color/ford_white"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvCars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/ford_gray"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout>
