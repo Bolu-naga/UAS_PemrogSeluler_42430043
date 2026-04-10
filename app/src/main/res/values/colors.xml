@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="ford_navy_dark">#081534</color>
+    <color name="ford_blue_primary">#133A7C</color>
+    <color name="ford_blue_medium">#2A6BAC</color>x`
+    <color name="ford_blue_light">#47A8E5</color>
+    <color name="ford_white">#FFFFFF</color>
+    <color name="ford_gray">#C6C6C6</color>
 </resources>
