@@ -10,13 +10,13 @@
 
     <ImageView
         android:id="@+id/ivSplashLogo"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
+        android:layout_width="230dp"
+        android:layout_height="140dp"
         android:src="@drawable/ford_logo"
         android:contentDescription="Ford Logo"
         android:scaleType="fitCenter"
-        android:padding="18dp"
-        android:background="@drawable/bg_card_glass" />
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent" />
 
     <TextView
         android:id="@+id/tvSplashTitle"
