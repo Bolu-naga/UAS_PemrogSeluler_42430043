@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         displayList.addAll(fordCars)
 
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, displayList)
+        adapter = ArrayAdapter(this, R.layout.item_car, displayList)
         lvCars.adapter = adapter
 
         btnSearch.setOnClickListener {
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         lvCars.setOnItemClickListener { _, _, position, _ ->
             val selectedCar = displayList[position]
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("CAR_NAME", selectedCar) // Bawa nama mobil ke halaman detail
+            intent.putExtra("CAR_NAME", selectedCar)
             startActivity(intent)
         }
     }
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        adapter.notifyDataSetChanged() // Perbarui layar
+        adapter.notifyDataSetChanged()
 
         if (displayList.isEmpty()) {
             Toast.makeText(this, "Mobil tidak ditemukan", Toast.LENGTH_SHORT).show()
@@ -84,16 +84,15 @@ class MainActivity : AppCompatActivity() {
     private fun bubbleSort(ascending: Boolean) {
         val n = displayList.size
 
-        // Looping ganda khas Bubble Sort untuk menukar (swap) posisi
         for (i in 0 until n - 1) {
             for (j in 0 until n - i - 1) {
                 var shouldSwap = false
                 val compareResult = displayList[j].compareTo(displayList[j + 1], ignoreCase = true)
 
                 if (ascending) {
-                    if (compareResult > 0) shouldSwap = true // Urut A-Z
+                    if (compareResult > 0) shouldSwap = true
                 } else {
-                    if (compareResult < 0) shouldSwap = true // Urut Z-A
+                    if (compareResult < 0) shouldSwap = true
                 }
 
                 if (shouldSwap) {

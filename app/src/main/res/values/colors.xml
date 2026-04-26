@@ -3,10 +3,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="ford_navy_dark">#081534</color>
-    <color name="ford_blue_primary">#133A7C</color>
-    <color name="ford_blue_medium">#2A6BAC</color>x`
-    <color name="ford_blue_light">#47A8E5</color>
-    <color name="ford_white">#FFFFFF</color>
-    <color name="ford_gray">#C6C6C6</color>
+    <color name="ford_bg_dark">#050B18</color>
+    <color name="ford_bg_mid">#081534</color>
+    <color name="ford_bg_card">#101A2E</color>
+
+    <color name="ford_blue_dark">#133A7C</color>
+    <color name="ford_blue_medium">#2A6BAC</color>
+    <color name="ford_blue_neon">#00A3FF</color>
+    <color name="ford_cyan">#41E8FF</color>
+
+    <color name="ford_text_main">#FFFFFF</color>
+    <color name="ford_text_soft">#AAB6C8</color>
+    <color name="ford_text_muted">#6F7D93</color>
+
+    <color name="ford_gold">#FFB84D</color>
+    <color name="ford_red">#FF4D5A</color>
+    <color name="ford_green">#45E28A</color>
+
+    <color name="glass_white">#1AFFFFFF</color>
+    <color name="glass_blue">#263FA9F5</color>
+    <color name="stroke_neon">#6600A3FF</color>
 </resources>

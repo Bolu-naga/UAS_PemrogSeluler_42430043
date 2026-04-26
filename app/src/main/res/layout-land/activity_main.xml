@@ -1,72 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/bg_gradient"
-    android:padding="16dp">
+    android:padding="18dp">
 
-    <LinearLayout
+    <!-- Left Panel: Header, Hero, Search, Filter -->
+    <ScrollView
+        android:id="@+id/leftPanelScroll"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="0.95"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_marginEnd="14dp">
+
+        <LinearLayout
+            android:id="@+id/leftPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header -->
+            <TextView
+                android:id="@+id/tvAppLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FORD NEON GARAGE"
+                android:textColor="@color/ford_cyan"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.18"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Katalog Mobil Ford"
+                android:textColor="@color/ford_text_main"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explore your next Ford beast"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="14dp" />
+
+            <!-- Hero Card -->
+            <LinearLayout
+                android:id="@+id/heroCard"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_card_glass"
+                android:elevation="8dp"
+                android:padding="16dp"
+                android:layout_marginBottom="14dp">
+
+                <TextView
+                    android:id="@+id/tvHeroBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FEATURED BEAST"
+                    android:textColor="@color/ford_cyan"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_badge"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/tvHeroTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ford Mustang GT"
+                    android:textColor="@color/ford_text_main"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/tvHeroDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="American muscle icon with futuristic digital garage experience."
+                    android:textColor="@color/ford_text_soft"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/tvHeroSpec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="480 HP  •  V8  •  Sport"
+                    android:textColor="@color/ford_gold"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Search -->
+            <LinearLayout
+                android:id="@+id/searchContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="Cari mobil..."
+                    android:textColorHint="@color/ford_text_muted"
+                    android:textColor="@color/ford_text_main"
+                    android:background="@drawable/bg_search"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="78dp"
+                    android:layout_height="48dp"
+                    android:text="Cari"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/ford_text_main"
+                    android:background="@drawable/bg_button_neon"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+            <!-- Category Chips -->
+            <HorizontalScrollView
+                android:id="@+id/categoryScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="12dp">
+
+                <LinearLayout
+                    android:id="@+id/categoryContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/chipAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="All"
+                        android:textColor="@color/ford_bg_dark"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_active"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipSport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Sport"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipSUV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="SUV"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipTruck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Truck"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipClassic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Classic"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Sort Buttons -->
+            <LinearLayout
+                android:id="@+id/sortContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSortAsc"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="A - Z"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/ford_blue_neon"
+                    android:background="@drawable/bg_button_outline"
+                    android:layout_marginEnd="5dp" />
+
+                <Button
+                    android:id="@+id/btnSortDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:text="Z - A"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="@color/ford_blue_neon"
+                    android:background="@drawable/bg_button_outline"
+                    android:layout_marginStart="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Right Panel: Car List -->
+    <LinearLayout
+        android:id="@+id/rightPanel"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.25"
         android:orientation="vertical"
-        android:paddingEnd="16dp">
+        android:background="@drawable/bg_card_glass"
+        android:elevation="8dp"
+        android:padding="14dp">
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvPopularTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Katalog Ford"
-            android:textColor="@color/ford_white"
-            android:textSize="24sp"
+            android:text="Popular Ford Collection"
+            android:textColor="@color/ford_text_main"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="10dp" />
 
-        <EditText
-            android:id="@+id/etSearch"
+        <TextView
+            android:id="@+id/tvPopularSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cari mobil..."
-            android:textColorHint="@color/ford_gray"
-            android:textColor="@color/ford_white"
-            android:backgroundTint="@color/ford_white"
-            android:inputType="text"
-            android:layout_marginBottom="8dp"/>
+            android:text="Tap one car to unlock the detail garage."
+            android:textColor="@color/ford_text_soft"
+            android:textSize="12sp"
+            android:layout_marginBottom="10dp" />
 
-        <Button
-            android:id="@+id/btnSearch"
+        <ListView
+            android:id="@+id/lvCars"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cari"
-            android:backgroundTint="@color/ford_blue_light"
-            android:textColor="@color/ford_white"
-            android:layout_marginBottom="12dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
+            android:cacheColorHint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false" />
 
-        <Button
-            android:id="@+id/btnSortAsc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Urut A-Z"
-            android:backgroundTint="@color/ford_blue_medium"
-            android:textColor="@color/ford_white"
-            android:layout_marginBottom="4dp"/>
-
-        <Button
-            android:id="@+id/btnSortDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Urut Z-A"
-            android:backgroundTint="@color/ford_blue_medium"
-            android:textColor="@color/ford_white"/>
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/lvCars"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1.5"
-        android:divider="@color/ford_gray"
-        android:dividerHeight="1dp"/>
 
 </LinearLayout>

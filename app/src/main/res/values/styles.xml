@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextTitleFord">
+        <item name="android:textColor">@color/ford_text_main</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+
+    <style name="TextSubtitleFord">
+        <item name="android:textColor">@color/ford_text_soft</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+
+    <style name="TextCarNameFord">
+        <item name="android:textColor">@color/ford_text_main</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+
+    <style name="TextSmallFord">
+        <item name="android:textColor">@color/ford_text_soft</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+
+</resources>
