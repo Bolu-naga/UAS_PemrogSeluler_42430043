@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Ford_Catalogue</string>
+    <string name="app_name">Ford Neon Garage</string>
+    <string name="app_tagline">Explore Your Next Ford Beast</string>
 </resources>

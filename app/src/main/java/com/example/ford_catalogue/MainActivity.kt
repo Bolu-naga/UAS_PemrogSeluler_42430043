@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import android.view.animation.AnimationUtils
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         setupCategoryChips()
         showCars(allCars)
 
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        lvCars.startAnimation(fadeIn)
+
         btnSearch.setOnClickListener {
             currentKeyword = etSearch.text.toString().trim()
             applyFilters(showToast = true)
@@ -76,8 +81,9 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("CAR_TRANSMISSION", selectedCar.transmission)
             intent.putExtra("CAR_FUEL", selectedCar.fuel)
             intent.putExtra("CAR_SEATS", selectedCar.seats)
+
             startActivity(intent)
-        }
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)        }
     }
 
     private fun initViews() {

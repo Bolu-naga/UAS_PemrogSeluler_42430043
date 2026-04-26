@@ -1,9 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Ford_Catalogue" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <style name="Theme.FordCatalogue" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/ford_blue_dark</item>
+        <item name="colorPrimaryVariant">@color/ford_bg_dark</item>
+        <item name="colorOnPrimary">@color/ford_text_main</item>
+
+        <item name="colorSecondary">@color/ford_blue_neon</item>
+        <item name="colorOnSecondary">@color/ford_text_main</item>
+
+        <item name="android:windowBackground">@color/ford_bg_dark</item>
+        <item name="android:statusBarColor">@color/ford_bg_dark</item>
+        <item name="android:navigationBarColor">@color/ford_bg_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
-    <style name="Theme.Ford_Catalogue" parent="Base.Theme.Ford_Catalogue" />
 </resources>

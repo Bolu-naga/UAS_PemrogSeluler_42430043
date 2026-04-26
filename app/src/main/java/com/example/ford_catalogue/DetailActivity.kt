@@ -6,6 +6,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import android.view.animation.AnimationUtils
+import android.view.View
 
 class DetailActivity : AppCompatActivity() {
 
@@ -36,6 +38,9 @@ class DetailActivity : AppCompatActivity() {
         initViews()
         loadCarData()
         setupActions()
+
+        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+        tvCarName.startAnimation(fadeIn)
     }
 
     private fun initViews() {
@@ -171,5 +176,10 @@ class DetailActivity : AppCompatActivity() {
         fuel: String
     ): String {
         return "$name adalah koleksi Ford kategori $category dengan mesin $engine, tenaga $power, dan bahan bakar $fuel. Mobil ini cocok untuk pengguna yang ingin merasakan karakter Ford yang kuat, berani, dan berbeda dari katalog mobil biasa."
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }
