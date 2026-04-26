@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splashContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_gradient"
+    android:padding="28dp">
+
+    <ImageView
+        android:id="@+id/ivSplashLogo"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/Ford_Logo"
+        android:contentDescription="Ford Logo"
+        android:scaleType="fitCenter"
+        android:padding="18dp"
+        android:background="@drawable/bg_card_glass" />
+
+    <TextView
+        android:id="@+id/tvSplashTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FORD NEON GARAGE"
+        android:textColor="@color/ford_text_main"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:letterSpacing="0.08"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:id="@+id/tvSplashSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Explore Your Next Ford Beast"
+        android:textColor="@color/ford_text_soft"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/tvSplashLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading digital garage..."
+        android:textColor="@color/ford_blue_neon"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginTop="34dp" />
+
+</LinearLayout>
