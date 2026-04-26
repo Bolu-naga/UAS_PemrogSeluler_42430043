@@ -177,6 +177,30 @@
                         android:layout_marginEnd="7dp" />
 
                     <TextView
+                        android:id="@+id/chipLegend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Legend"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipSupercar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Supercar"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
                         android:id="@+id/chipSport"
                         android:layout_width="wrap_content"
                         android:layout_height="34dp"
@@ -205,6 +229,54 @@
                         android:layout_width="wrap_content"
                         android:layout_height="34dp"
                         android:text="Truck"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipElectric"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Electric"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipHybrid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Hybrid"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipSedan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Sedan"
+                        android:textColor="@color/ford_text_main"
+                        android:gravity="center"
+                        android:background="@drawable/bg_chip_inactive"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:layout_marginEnd="7dp" />
+
+                    <TextView
+                        android:id="@+id/chipVan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="34dp"
+                        android:text="Van"
                         android:textColor="@color/ford_text_main"
                         android:gravity="center"
                         android:background="@drawable/bg_chip_inactive"

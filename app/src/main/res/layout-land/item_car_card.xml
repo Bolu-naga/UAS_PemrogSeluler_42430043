@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/carCardContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_card_glass"
+    android:padding="14dp"
+    android:layout_marginBottom="10dp">
+
+    <!-- Top Row -->
+    <LinearLayout
+        android:id="@+id/topRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:id="@+id/titleContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCardCarName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ford Mustang GT"
+                android:textColor="@color/ford_text_main"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/tvCardMeta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sport • 5.0L V8"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="11sp"
+                android:layout_marginTop="3dp"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvFavorite"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:text="♡"
+            android:textColor="@color/ford_red"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:focusable="false" />
+
+    </LinearLayout>
+
+    <!-- Tagline -->
+    <TextView
+        android:id="@+id/tvCardTagline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Born to roar. Built to dominate."
+        android:textColor="@color/ford_text_soft"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        android:maxLines="1" />
+
+    <!-- Specs Row -->
+    <LinearLayout
+        android:id="@+id/specRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:id="@+id/specPower"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_badge"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POWER"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCardPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="480 HP"
+                android:textColor="@color/ford_cyan"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/specFuel"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_badge"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FUEL"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCardFuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Petrol"
+                android:textColor="@color/ford_cyan"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/specSeats"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_badge"
+            android:layout_marginStart="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEATS"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="8sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCardSeats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4 Seats"
+                android:textColor="@color/ford_cyan"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="3dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Bottom Row -->
+    <LinearLayout
+        android:id="@+id/bottomRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tvCardCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SPORT"
+            android:textColor="@color/ford_cyan"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:background="@drawable/bg_badge"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <TextView
+            android:id="@+id/tvCardPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rp 1.200.000.000"
+            android:textColor="@color/ford_gold"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:layout_marginStart="10dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
