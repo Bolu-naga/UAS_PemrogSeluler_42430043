@@ -1,0 +1,351 @@
+package com.example.ford_catalogue
+
+data class FordCar(
+    val name: String,
+    val category: String,
+    val engine: String,
+    val power: String,
+    val price: String,
+    val tagline: String,
+    val transmission: String,
+    val fuel: String,
+    val seats: String
+)
+
+object FordCarRepository {
+
+    fun getCars(): ArrayList<FordCar> {
+        return arrayListOf(
+            FordCar(
+                name = "Ford GT40 Mark II Ken Miles",
+                category = "Legend",
+                engine = "7.0L V8",
+                power = "485 HP",
+                price = "Collector Car",
+                tagline = "The Le Mans legend inspired by Ken Miles.",
+                transmission = "4-Speed Manual",
+                fuel = "Petrol",
+                seats = "2 Seats"
+            ),
+            FordCar(
+                name = "Ford GT",
+                category = "Supercar",
+                engine = "3.5L EcoBoost V6",
+                power = "660 HP",
+                price = "Rp 10.000.000.000",
+                tagline = "A modern supercar with racing DNA.",
+                transmission = "7-Speed Dual Clutch",
+                fuel = "Petrol",
+                seats = "2 Seats"
+            ),
+            FordCar(
+                name = "Ford Mustang GT",
+                category = "Sport",
+                engine = "5.0L V8",
+                power = "480 HP",
+                price = "Rp 1.200.000.000",
+                tagline = "Born to roar. Built to dominate.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "4 Seats"
+            ),
+            FordCar(
+                name = "Ford Mustang Dark Horse",
+                category = "Sport",
+                engine = "5.0L Coyote V8",
+                power = "500 HP",
+                price = "Rp 1.500.000.000",
+                tagline = "Track-ready muscle with a darker attitude.",
+                transmission = "6-Speed Manual",
+                fuel = "Petrol",
+                seats = "4 Seats"
+            ),
+            FordCar(
+                name = "Ford Mustang Mach-E GT",
+                category = "Electric",
+                engine = "Dual Electric Motor",
+                power = "480 HP",
+                price = "Rp 1.300.000.000",
+                tagline = "Electric performance with Mustang spirit.",
+                transmission = "Single-Speed Automatic",
+                fuel = "Electric",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Ranger Raptor",
+                category = "Truck",
+                engine = "3.0L V6 Twin Turbo",
+                power = "397 HP",
+                price = "Rp 1.100.000.000",
+                tagline = "Off-road beast with city-class comfort.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Ranger Wildtrak",
+                category = "Truck",
+                engine = "2.0L Bi-Turbo Diesel",
+                power = "210 HP",
+                price = "Rp 850.000.000",
+                tagline = "Smart pickup for work and adventure.",
+                transmission = "10-Speed Automatic",
+                fuel = "Diesel",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford F-150 Raptor",
+                category = "Truck",
+                engine = "3.5L EcoBoost V6",
+                power = "450 HP",
+                price = "Rp 1.800.000.000",
+                tagline = "Desert-runner power in a full-size truck.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford F-150 Lightning",
+                category = "Electric",
+                engine = "Dual Electric Motor",
+                power = "580 HP",
+                price = "Rp 1.600.000.000",
+                tagline = "Electric truck power for the future.",
+                transmission = "Single-Speed Automatic",
+                fuel = "Electric",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford F-150 Platinum",
+                category = "Truck",
+                engine = "3.5L PowerBoost Hybrid",
+                power = "430 HP",
+                price = "Rp 1.700.000.000",
+                tagline = "Luxury, power, and everyday confidence.",
+                transmission = "10-Speed Automatic",
+                fuel = "Hybrid",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Bronco",
+                category = "SUV",
+                engine = "2.7L EcoBoost V6",
+                power = "330 HP",
+                price = "Rp 1.300.000.000",
+                tagline = "Adventure starts where the road ends.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Bronco Raptor",
+                category = "SUV",
+                engine = "3.0L EcoBoost V6",
+                power = "418 HP",
+                price = "Rp 1.900.000.000",
+                tagline = "Extreme off-road SUV with savage power.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Bronco Sport",
+                category = "SUV",
+                engine = "2.0L EcoBoost",
+                power = "250 HP",
+                price = "Rp 850.000.000",
+                tagline = "Compact adventure machine for daily escape.",
+                transmission = "8-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Everest Titanium",
+                category = "SUV",
+                engine = "2.0L Bi-Turbo Diesel",
+                power = "210 HP",
+                price = "Rp 850.000.000",
+                tagline = "Built for family adventure and long journeys.",
+                transmission = "10-Speed Automatic",
+                fuel = "Diesel",
+                seats = "7 Seats"
+            ),
+            FordCar(
+                name = "Ford Explorer ST",
+                category = "SUV",
+                engine = "3.0L EcoBoost V6",
+                power = "400 HP",
+                price = "Rp 1.250.000.000",
+                tagline = "Performance SUV with premium comfort.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "7 Seats"
+            ),
+            FordCar(
+                name = "Ford Expedition Platinum",
+                category = "SUV",
+                engine = "3.5L EcoBoost V6",
+                power = "400 HP",
+                price = "Rp 1.700.000.000",
+                tagline = "Big comfort for big adventures.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "8 Seats"
+            ),
+            FordCar(
+                name = "Ford Edge ST",
+                category = "SUV",
+                engine = "2.7L EcoBoost V6",
+                power = "335 HP",
+                price = "Rp 950.000.000",
+                tagline = "Sporty crossover with confident performance.",
+                transmission = "7-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Escape Hybrid",
+                category = "Hybrid",
+                engine = "2.5L Hybrid",
+                power = "200 HP",
+                price = "Rp 750.000.000",
+                tagline = "Efficient SUV for modern urban journeys.",
+                transmission = "eCVT",
+                fuel = "Hybrid",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Puma ST",
+                category = "Sport",
+                engine = "1.5L EcoBoost",
+                power = "200 HP",
+                price = "Rp 650.000.000",
+                tagline = "Compact crossover with hot-hatch energy.",
+                transmission = "6-Speed Manual",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Focus RS",
+                category = "Sport",
+                engine = "2.3L EcoBoost",
+                power = "350 HP",
+                price = "Rp 900.000.000",
+                tagline = "Compact hatch with rally DNA.",
+                transmission = "6-Speed Manual",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Focus ST",
+                category = "Sport",
+                engine = "2.3L EcoBoost",
+                power = "280 HP",
+                price = "Rp 700.000.000",
+                tagline = "Everyday hatchback with serious punch.",
+                transmission = "6-Speed Manual",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Fiesta ST",
+                category = "Sport",
+                engine = "1.5L EcoBoost",
+                power = "200 HP",
+                price = "Rp 450.000.000",
+                tagline = "Small body, big attitude.",
+                transmission = "6-Speed Manual",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Mondeo",
+                category = "Sedan",
+                engine = "2.0L EcoBoost",
+                power = "240 HP",
+                price = "Rp 600.000.000",
+                tagline = "Elegant sedan for smooth daily driving.",
+                transmission = "6-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Taurus SHO",
+                category = "Sedan",
+                engine = "3.5L EcoBoost V6",
+                power = "365 HP",
+                price = "Rp 800.000.000",
+                tagline = "Sleeper sedan with turbocharged confidence.",
+                transmission = "6-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Maverick Hybrid",
+                category = "Truck",
+                engine = "2.5L Hybrid",
+                power = "191 HP",
+                price = "Rp 650.000.000",
+                tagline = "Smart pickup for urban explorers.",
+                transmission = "CVT",
+                fuel = "Hybrid",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Transit Custom",
+                category = "Van",
+                engine = "2.0L EcoBlue Diesel",
+                power = "170 HP",
+                price = "Rp 750.000.000",
+                tagline = "Business van with modern practicality.",
+                transmission = "8-Speed Automatic",
+                fuel = "Diesel",
+                seats = "8 Seats"
+            ),
+            FordCar(
+                name = "Ford Transit Trail",
+                category = "Van",
+                engine = "3.5L EcoBoost V6",
+                power = "310 HP",
+                price = "Rp 1.100.000.000",
+                tagline = "Adventure van for road trip freedom.",
+                transmission = "10-Speed Automatic",
+                fuel = "Petrol",
+                seats = "8 Seats"
+            ),
+            FordCar(
+                name = "Ford Crown Victoria",
+                category = "Classic",
+                engine = "4.6L V8",
+                power = "250 HP",
+                price = "Rp 350.000.000",
+                tagline = "Classic American sedan with iconic presence.",
+                transmission = "4-Speed Automatic",
+                fuel = "Petrol",
+                seats = "5 Seats"
+            ),
+            FordCar(
+                name = "Ford Thunderbird",
+                category = "Classic",
+                engine = "3.9L V8",
+                power = "280 HP",
+                price = "Rp 950.000.000",
+                tagline = "Classic elegance with American soul.",
+                transmission = "5-Speed Automatic",
+                fuel = "Petrol",
+                seats = "2 Seats"
+            ),
+            FordCar(
+                name = "Ford Capri RS3100",
+                category = "Classic",
+                engine = "3.1L V6",
+                power = "148 HP",
+                price = "Collector Car",
+                tagline = "Retro coupe with European racing flavor.",
+                transmission = "4-Speed Manual",
+                fuel = "Petrol",
+                seats = "4 Seats"
+            )
+        )
+    }
+}

@@ -1,46 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detailScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bg_gradient"
-    android:padding="16dp"
-    android:gravity="center_horizontal">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/ivCarImage"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:src="@android:drawable/ic_menu_gallery"
-        android:scaleType="centerCrop"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/tvDetailTitle"
+    <LinearLayout
+        android:id="@+id/detailContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nama Mobil Ford"
-        android:textColor="@color/ford_white"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp"/>
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tvDetailSpecs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Spesifikasi mesin, tahun, dan tipe akan ditampilkan di sini."
-        android:textColor="@color/ford_gray"
-        android:textSize="16sp"
-        android:layout_marginBottom="32dp"/>
+        <TextView
+            android:id="@+id/tvDetailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FORD DETAIL GARAGE"
+            android:textColor="@color/ford_cyan"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.16"
+            android:layout_marginTop="10dp" />
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kembali"
-        android:backgroundTint="@color/ford_blue_light"
-        android:textColor="@color/ford_white"/>
+        <LinearLayout
+            android:id="@+id/heroDetailCard"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_card_glass"
+            android:elevation="8dp"
+            android:padding="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tvCarHeroIcon"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:gravity="center"
+                android:text="FORD"
+                android:textColor="@color/ford_cyan"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_badge" />
+
+            <TextView
+                android:id="@+id/tvHeroDetailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Digital Showroom View"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="13sp"
+                android:layout_marginTop="16dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCarName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ford Mustang GT"
+            android:textColor="@color/ford_text_main"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCarSpec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spesifikasi mobil akan tampil di sini."
+            android:textColor="@color/ford_text_soft"
+            android:textSize="15sp"
+            android:lineSpacingExtra="6dp"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:id="@+id/priceCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_price_highlight"
+            android:padding="16dp"
+            android:layout_marginTop="18dp">
+
+            <TextView
+                android:id="@+id/tvPriceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estimated Price"
+                android:textColor="@color/ford_text_soft"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvCarPricePreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Open detail data"
+                android:textColor="@color/ford_gold"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="Kembali ke Garage"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@color/ford_text_main"
+            android:background="@drawable/bg_button_neon"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+
+</ScrollView>

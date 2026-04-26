@@ -2,12 +2,16 @@ package com.example.ford_catalogue
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,15 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnSortDesc: Button
     private lateinit var lvCars: ListView
 
-    private val fordCars = arrayOf(
-        "Ford Fiesta", "Ford Focus", "Ford S-Max", "Ford Fusion", "Ford Taurus",
-        "Ford Everest", "Ford Bronco", "Ford Explorer", "Ford Escape", "Ford Expedition",
-        "Ford Mustang GT", "Ford Mustang Mach 1", "Ford Focus RS", "Ford Shelby GT500",
-        "Ford Ranger", "Ford F-150", "Ford Maverick", "Ford GT", "Ford GT40"
-    )
-
-    private val displayList = ArrayList<String>()
-    private lateinit var adapter: ArrayAdapter<String>
+    private val allCars = FordCarRepository.getCars()
+    private val displayedCars = ArrayList<FordCar>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,72 +34,131 @@ class MainActivity : AppCompatActivity() {
         btnSortDesc = findViewById(R.id.btnSortDesc)
         lvCars = findViewById(R.id.lvCars)
 
-        displayList.addAll(fordCars)
-
-        adapter = ArrayAdapter(this, R.layout.item_car, displayList)
-        lvCars.adapter = adapter
+        showCars(allCars)
 
         btnSearch.setOnClickListener {
-            val query = etSearch.text.toString().trim()
-            if (query.isEmpty()) {
-                Toast.makeText(this, "Masukkan nama mobil Ford terlebih dahulu!", Toast.LENGTH_SHORT).show()
-                displayList.clear()
-                displayList.addAll(fordCars)
-                adapter.notifyDataSetChanged()
+            val keyword = etSearch.text.toString().trim()
+
+            if (keyword.isEmpty()) {
+                showCars(allCars)
+                Toast.makeText(this, "Menampilkan semua mobil Ford", Toast.LENGTH_SHORT).show()
             } else {
-                linearSearch(query)
+                val result = linearSearch(keyword)
+                showCars(result)
+
+                if (result.isEmpty()) {
+                    Toast.makeText(this, "Mobil Ford tidak ditemukan", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "${result.size} mobil ditemukan", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
-        btnSortAsc.setOnClickListener { bubbleSort(true) }
-        btnSortDesc.setOnClickListener { bubbleSort(false) }
+        btnSortAsc.setOnClickListener {
+            bubbleSort(ascending = true)
+            refreshListView()
+            Toast.makeText(this, "Diurutkan dari A sampai Z", Toast.LENGTH_SHORT).show()
+        }
+
+        btnSortDesc.setOnClickListener {
+            bubbleSort(ascending = false)
+            refreshListView()
+            Toast.makeText(this, "Diurutkan dari Z sampai A", Toast.LENGTH_SHORT).show()
+        }
 
         lvCars.setOnItemClickListener { _, _, position, _ ->
-            val selectedCar = displayList[position]
+            val selectedCar = displayedCars[position]
+
             val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("CAR_NAME", selectedCar)
+            intent.putExtra("CAR_NAME", selectedCar.name)
+            intent.putExtra("CAR_CATEGORY", selectedCar.category)
+            intent.putExtra("CAR_ENGINE", selectedCar.engine)
+            intent.putExtra("CAR_POWER", selectedCar.power)
+            intent.putExtra("CAR_PRICE", selectedCar.price)
+            intent.putExtra("CAR_TAGLINE", selectedCar.tagline)
+            intent.putExtra("CAR_TRANSMISSION", selectedCar.transmission)
+            intent.putExtra("CAR_FUEL", selectedCar.fuel)
+            intent.putExtra("CAR_SEATS", selectedCar.seats)
             startActivity(intent)
         }
     }
 
-    private fun linearSearch(query: String) {
-        displayList.clear()
+    private fun showCars(cars: List<FordCar>) {
+        displayedCars.clear()
+        displayedCars.addAll(cars)
+        refreshListView()
+    }
 
-        for (i in fordCars.indices) {
-            if (fordCars[i].contains(query, ignoreCase = true)) {
-                displayList.add(fordCars[i])
+    private fun refreshListView() {
+        val carTexts = displayedCars.map { car ->
+            "${car.name}\n${car.category} • ${car.engine} • ${car.power}\n${car.price}"
+        }
+
+        val adapter = object : ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_list_item_1,
+            carTexts
+        ) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent)
+                val textView = view.findViewById<TextView>(android.R.id.text1)
+
+                textView.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.ford_text_main))
+                textView.textSize = 15f
+                textView.setPadding(28, 22, 28, 22)
+                textView.setLineSpacing(4f, 1.1f)
+
+                view.setBackgroundResource(R.drawable.bg_card_glass)
+
+                return view
             }
         }
 
-        adapter.notifyDataSetChanged()
+        lvCars.adapter = adapter
+    }
 
-        if (displayList.isEmpty()) {
-            Toast.makeText(this, "Mobil tidak ditemukan", Toast.LENGTH_SHORT).show()
+    private fun linearSearch(keyword: String): List<FordCar> {
+        val result = ArrayList<FordCar>()
+
+        for (car in allCars) {
+            val isMatch = car.name.contains(keyword, ignoreCase = true) ||
+                    car.category.contains(keyword, ignoreCase = true) ||
+                    car.engine.contains(keyword, ignoreCase = true) ||
+                    car.power.contains(keyword, ignoreCase = true) ||
+                    car.price.contains(keyword, ignoreCase = true) ||
+                    car.tagline.contains(keyword, ignoreCase = true) ||
+                    car.transmission.contains(keyword, ignoreCase = true) ||
+                    car.fuel.contains(keyword, ignoreCase = true) ||
+                    car.seats.contains(keyword, ignoreCase = true)
+
+            if (isMatch) {
+                result.add(car)
+            }
         }
+
+        return result
     }
 
     private fun bubbleSort(ascending: Boolean) {
-        val n = displayList.size
+        val size = displayedCars.size
 
-        for (i in 0 until n - 1) {
-            for (j in 0 until n - i - 1) {
-                var shouldSwap = false
-                val compareResult = displayList[j].compareTo(displayList[j + 1], ignoreCase = true)
+        for (i in 0 until size - 1) {
+            for (j in 0 until size - i - 1) {
+                val currentName = displayedCars[j].name
+                val nextName = displayedCars[j + 1].name
 
-                if (ascending) {
-                    if (compareResult > 0) shouldSwap = true
+                val shouldSwap = if (ascending) {
+                    currentName > nextName
                 } else {
-                    if (compareResult < 0) shouldSwap = true
+                    currentName < nextName
                 }
 
                 if (shouldSwap) {
-                    val temp = displayList[j]
-                    displayList[j] = displayList[j + 1]
-                    displayList[j + 1] = temp
+                    val temp = displayedCars[j]
+                    displayedCars[j] = displayedCars[j + 1]
+                    displayedCars[j + 1] = temp
                 }
             }
         }
-        adapter.notifyDataSetChanged()
-        Toast.makeText(this, "Katalog berhasil diurutkan!", Toast.LENGTH_SHORT).show()
     }
 }
