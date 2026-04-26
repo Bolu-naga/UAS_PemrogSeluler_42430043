@@ -2,11 +2,14 @@ package com.example.ford_catalogue
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,50 +18,49 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnSortAsc: Button
     private lateinit var btnSortDesc: Button
     private lateinit var lvCars: ListView
+    private lateinit var tvEmptyState: TextView
+
+    private lateinit var chipAll: TextView
+    private lateinit var chipLegend: TextView
+    private lateinit var chipSupercar: TextView
+    private lateinit var chipSport: TextView
+    private lateinit var chipSUV: TextView
+    private lateinit var chipTruck: TextView
+    private lateinit var chipElectric: TextView
+    private lateinit var chipHybrid: TextView
+    private lateinit var chipSedan: TextView
+    private lateinit var chipVan: TextView
+    private lateinit var chipClassic: TextView
 
     private val allCars = FordCarRepository.getCars()
     private val displayedCars = ArrayList<FordCar>()
+
+    private var selectedCategory = "All"
+    private var currentKeyword = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        etSearch = findViewById(R.id.etSearch)
-        btnSearch = findViewById(R.id.btnSearch)
-        btnSortAsc = findViewById(R.id.btnSortAsc)
-        btnSortDesc = findViewById(R.id.btnSortDesc)
-        lvCars = findViewById(R.id.lvCars)
-
+        initViews()
+        setupCategoryChips()
         showCars(allCars)
 
         btnSearch.setOnClickListener {
-            val keyword = etSearch.text.toString().trim()
-
-            if (keyword.isEmpty()) {
-                showCars(allCars)
-                Toast.makeText(this, "Menampilkan semua mobil Ford", Toast.LENGTH_SHORT).show()
-            } else {
-                val result = linearSearch(keyword)
-                showCars(result)
-
-                if (result.isEmpty()) {
-                    Toast.makeText(this, "Mobil Ford tidak ditemukan", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "${result.size} mobil ditemukan", Toast.LENGTH_SHORT).show()
-                }
-            }
+            currentKeyword = etSearch.text.toString().trim()
+            applyFilters(showToast = true)
         }
 
         btnSortAsc.setOnClickListener {
             bubbleSort(ascending = true)
             refreshListView()
-            Toast.makeText(this, "Diurutkan dari A sampai Z", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Garage diurutkan dari A sampai Z", Toast.LENGTH_SHORT).show()
         }
 
         btnSortDesc.setOnClickListener {
             bubbleSort(ascending = false)
             refreshListView()
-            Toast.makeText(this, "Diurutkan dari Z sampai A", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Garage diurutkan dari Z sampai A", Toast.LENGTH_SHORT).show()
         }
 
         lvCars.setOnItemClickListener { _, _, position, _ ->
@@ -78,10 +80,124 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initViews() {
+        etSearch = findViewById(R.id.etSearch)
+        btnSearch = findViewById(R.id.btnSearch)
+        btnSortAsc = findViewById(R.id.btnSortAsc)
+        btnSortDesc = findViewById(R.id.btnSortDesc)
+        lvCars = findViewById(R.id.lvCars)
+        tvEmptyState = findViewById(R.id.tvEmptyState)
+
+        chipAll = findViewById(R.id.chipAll)
+        chipLegend = findViewById(R.id.chipLegend)
+        chipSupercar = findViewById(R.id.chipSupercar)
+        chipSport = findViewById(R.id.chipSport)
+        chipSUV = findViewById(R.id.chipSUV)
+        chipTruck = findViewById(R.id.chipTruck)
+        chipElectric = findViewById(R.id.chipElectric)
+        chipHybrid = findViewById(R.id.chipHybrid)
+        chipSedan = findViewById(R.id.chipSedan)
+        chipVan = findViewById(R.id.chipVan)
+        chipClassic = findViewById(R.id.chipClassic)
+    }
+
+    private fun setupCategoryChips() {
+        val chips = mapOf(
+            chipAll to "All",
+            chipLegend to "Legend",
+            chipSupercar to "Supercar",
+            chipSport to "Sport",
+            chipSUV to "SUV",
+            chipTruck to "Truck",
+            chipElectric to "Electric",
+            chipHybrid to "Hybrid",
+            chipSedan to "Sedan",
+            chipVan to "Van",
+            chipClassic to "Classic"
+        )
+
+        for ((chip, category) in chips) {
+            chip.setOnClickListener {
+                selectedCategory = category
+                updateChipStyle()
+                applyFilters(showToast = true)
+            }
+        }
+
+        updateChipStyle()
+    }
+
+    private fun updateChipStyle() {
+        val chips = mapOf(
+            chipAll to "All",
+            chipLegend to "Legend",
+            chipSupercar to "Supercar",
+            chipSport to "Sport",
+            chipSUV to "SUV",
+            chipTruck to "Truck",
+            chipElectric to "Electric",
+            chipHybrid to "Hybrid",
+            chipSedan to "Sedan",
+            chipVan to "Van",
+            chipClassic to "Classic"
+        )
+
+        for ((chip, category) in chips) {
+            if (category == selectedCategory) {
+                chip.setBackgroundResource(R.drawable.bg_chip_active)
+                chip.setTextColor(ContextCompat.getColor(this, R.color.ford_bg_dark))
+                chip.setTypeface(null, android.graphics.Typeface.BOLD)
+            } else {
+                chip.setBackgroundResource(R.drawable.bg_chip_inactive)
+                chip.setTextColor(ContextCompat.getColor(this, R.color.ford_text_main))
+                chip.setTypeface(null, android.graphics.Typeface.NORMAL)
+            }
+        }
+    }
+
+    private fun applyFilters(showToast: Boolean) {
+        val filteredCars = ArrayList<FordCar>()
+
+        for (car in allCars) {
+            val matchCategory = selectedCategory == "All" ||
+                    car.category.equals(selectedCategory, ignoreCase = true)
+
+            val matchKeyword = currentKeyword.isEmpty() ||
+                    car.name.contains(currentKeyword, ignoreCase = true) ||
+                    car.category.contains(currentKeyword, ignoreCase = true) ||
+                    car.engine.contains(currentKeyword, ignoreCase = true) ||
+                    car.power.contains(currentKeyword, ignoreCase = true) ||
+                    car.price.contains(currentKeyword, ignoreCase = true) ||
+                    car.tagline.contains(currentKeyword, ignoreCase = true) ||
+                    car.transmission.contains(currentKeyword, ignoreCase = true) ||
+                    car.fuel.contains(currentKeyword, ignoreCase = true) ||
+                    car.seats.contains(currentKeyword, ignoreCase = true)
+
+            if (matchCategory && matchKeyword) {
+                filteredCars.add(car)
+            }
+        }
+
+        showCars(filteredCars)
+
+        if (showToast) {
+            val message = if (filteredCars.isEmpty()) {
+                "Tidak ada mobil yang cocok"
+            } else if (selectedCategory == "All" && currentKeyword.isEmpty()) {
+                "Menampilkan semua koleksi Ford"
+            } else {
+                "${filteredCars.size} mobil ditemukan"
+            }
+
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun showCars(cars: List<FordCar>) {
         displayedCars.clear()
         displayedCars.addAll(cars)
         refreshListView()
+        updateEmptyState()
     }
 
     private fun refreshListView() {
@@ -89,26 +205,14 @@ class MainActivity : AppCompatActivity() {
         lvCars.adapter = adapter
     }
 
-    private fun linearSearch(keyword: String): List<FordCar> {
-        val result = ArrayList<FordCar>()
-
-        for (car in allCars) {
-            val isMatch = car.name.contains(keyword, ignoreCase = true) ||
-                    car.category.contains(keyword, ignoreCase = true) ||
-                    car.engine.contains(keyword, ignoreCase = true) ||
-                    car.power.contains(keyword, ignoreCase = true) ||
-                    car.price.contains(keyword, ignoreCase = true) ||
-                    car.tagline.contains(keyword, ignoreCase = true) ||
-                    car.transmission.contains(keyword, ignoreCase = true) ||
-                    car.fuel.contains(keyword, ignoreCase = true) ||
-                    car.seats.contains(keyword, ignoreCase = true)
-
-            if (isMatch) {
-                result.add(car)
-            }
+    private fun updateEmptyState() {
+        if (displayedCars.isEmpty()) {
+            tvEmptyState.visibility = View.VISIBLE
+            lvCars.visibility = View.GONE
+        } else {
+            tvEmptyState.visibility = View.GONE
+            lvCars.visibility = View.VISIBLE
         }
-
-        return result
     }
 
     private fun bubbleSort(ascending: Boolean) {

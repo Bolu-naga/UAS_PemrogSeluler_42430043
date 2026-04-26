@@ -162,6 +162,30 @@
                 android:layout_marginEnd="8dp" />
 
             <TextView
+                android:id="@+id/chipLegend"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Legend"
+                android:textColor="@color/ford_text_main"
+                android:gravity="center"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/chipSupercar"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Supercar"
+                android:textColor="@color/ford_text_main"
+                android:gravity="center"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
                 android:id="@+id/chipSport"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
@@ -190,6 +214,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="Truck"
+                android:textColor="@color/ford_text_main"
+                android:gravity="center"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/chipElectric"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Electric"
+                android:textColor="@color/ford_text_main"
+                android:gravity="center"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/chipHybrid"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Hybrid"
+                android:textColor="@color/ford_text_main"
+                android:gravity="center"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/chipSedan"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Sedan"
+                android:textColor="@color/ford_text_main"
+                android:gravity="center"
+                android:background="@drawable/bg_chip_inactive"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/chipVan"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Van"
                 android:textColor="@color/ford_text_main"
                 android:gravity="center"
                 android:background="@drawable/bg_chip_inactive"
@@ -255,6 +327,19 @@
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Ford found.\nTry another beast name or category."
+        android:textColor="@color/ford_text_soft"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:background="@drawable/bg_card_glass"
+        android:padding="24dp"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp" />
 
     <!-- List -->
     <ListView
