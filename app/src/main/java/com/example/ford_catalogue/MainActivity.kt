@@ -2,16 +2,11 @@ package com.example.ford_catalogue
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -90,30 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshListView() {
-        val carTexts = displayedCars.map { car ->
-            "${car.name}\n${car.category} • ${car.engine} • ${car.power}\n${car.price}"
-        }
-
-        val adapter = object : ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_list_item_1,
-            carTexts
-        ) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = super.getView(position, convertView, parent)
-                val textView = view.findViewById<TextView>(android.R.id.text1)
-
-                textView.setTextColor(ContextCompat.getColor(this@MainActivity, R.color.ford_text_main))
-                textView.textSize = 15f
-                textView.setPadding(28, 22, 28, 22)
-                textView.setLineSpacing(4f, 1.1f)
-
-                view.setBackgroundResource(R.drawable.bg_card_glass)
-
-                return view
-            }
-        }
-
+        val adapter = FordCarAdapter(this, displayedCars)
         lvCars.adapter = adapter
     }
 
