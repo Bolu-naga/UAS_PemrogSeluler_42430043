@@ -12,7 +12,7 @@
         android:id="@+id/ivSplashLogo"
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:src="@drawable/Ford_Logo"
+        android:src="@drawable/ford_logo"
         android:contentDescription="Ford Logo"
         android:scaleType="fitCenter"
         android:padding="18dp"
