@@ -8,7 +8,18 @@
     android:padding="14dp"
     android:layout_marginBottom="10dp">
 
-    <!-- Top Row -->
+    <ImageView
+        android:id="@+id/ivCardCarImage"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/ford_mustang_gt"
+        android:contentDescription="Car Image"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:background="@color/ford_bg_card"
+        android:padding="6dp"
+        android:layout_marginBottom="10dp" />
+
     <LinearLayout
         android:id="@+id/topRow"
         android:layout_width="match_parent"
@@ -57,7 +68,6 @@
 
     </LinearLayout>
 
-    <!-- Tagline -->
     <TextView
         android:id="@+id/tvCardTagline"
         android:layout_width="match_parent"
@@ -68,7 +78,6 @@
         android:layout_marginTop="8dp"
         android:maxLines="1" />
 
-    <!-- Specs Row -->
     <LinearLayout
         android:id="@+id/specRow"
         android:layout_width="match_parent"
@@ -169,7 +178,6 @@
 
     </LinearLayout>
 
-    <!-- Bottom Row -->
     <LinearLayout
         android:id="@+id/bottomRow"
         android:layout_width="match_parent"

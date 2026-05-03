@@ -32,16 +32,14 @@
             android:gravity="center"
             android:layout_marginBottom="18dp" />
 
-        <TextView
-            android:id="@+id/tvCarHeroIcon"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:gravity="center"
-            android:text="FORD"
-            android:textColor="@color/ford_cyan"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:background="@drawable/bg_badge" />
+        <ImageView
+            android:id="@+id/ivDetailCarImage"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:src="@drawable/ford_mustang_gt"
+            android:contentDescription="Car Detail Image"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true" />
 
         <TextView
             android:id="@+id/tvHeroDetailText"

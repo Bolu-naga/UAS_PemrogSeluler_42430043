@@ -9,7 +9,8 @@ data class FordCar(
     val tagline: String,
     val transmission: String,
     val fuel: String,
-    val seats: String
+    val seats: String,
+    val imageRes: Int
 )
 
 object FordCarRepository {
@@ -25,7 +26,8 @@ object FordCarRepository {
                 tagline = "The Le Mans legend inspired by Ken Miles.",
                 transmission = "4-Speed Manual",
                 fuel = "Petrol",
-                seats = "2 Seats"
+                seats = "2 Seats",
+                imageRes = R.drawable.ford_gt40_ken_miles
             ),
             FordCar(
                 name = "Ford GT",
@@ -36,7 +38,8 @@ object FordCarRepository {
                 tagline = "A modern supercar with racing DNA.",
                 transmission = "7-Speed Dual Clutch",
                 fuel = "Petrol",
-                seats = "2 Seats"
+                seats = "2 Seats",
+                imageRes = R.drawable.ford_gt
             ),
             FordCar(
                 name = "Ford Mustang GT",
@@ -47,7 +50,8 @@ object FordCarRepository {
                 tagline = "Born to roar. Built to dominate.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "4 Seats"
+                seats = "4 Seats",
+                imageRes = R.drawable.ford_mustang_gt
             ),
             FordCar(
                 name = "Ford Mustang Dark Horse",
@@ -58,7 +62,8 @@ object FordCarRepository {
                 tagline = "Track-ready muscle with a darker attitude.",
                 transmission = "6-Speed Manual",
                 fuel = "Petrol",
-                seats = "4 Seats"
+                seats = "4 Seats",
+                imageRes = R.drawable.ford_mustang_dark_horse
             ),
             FordCar(
                 name = "Ford Mustang Mach-E GT",
@@ -69,7 +74,8 @@ object FordCarRepository {
                 tagline = "Electric performance with Mustang spirit.",
                 transmission = "Single-Speed Automatic",
                 fuel = "Electric",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_mustang_mach_e_gt
             ),
             FordCar(
                 name = "Ford Ranger Raptor",
@@ -80,7 +86,8 @@ object FordCarRepository {
                 tagline = "Off-road beast with city-class comfort.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_ranger_raptor
             ),
             FordCar(
                 name = "Ford Ranger Wildtrak",
@@ -91,7 +98,8 @@ object FordCarRepository {
                 tagline = "Smart pickup for work and adventure.",
                 transmission = "10-Speed Automatic",
                 fuel = "Diesel",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_ranger_wildtrak
             ),
             FordCar(
                 name = "Ford F-150 Raptor",
@@ -102,7 +110,8 @@ object FordCarRepository {
                 tagline = "Desert-runner power in a full-size truck.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_f150_raptor
             ),
             FordCar(
                 name = "Ford F-150 Lightning",
@@ -113,7 +122,8 @@ object FordCarRepository {
                 tagline = "Electric truck power for the future.",
                 transmission = "Single-Speed Automatic",
                 fuel = "Electric",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_f150_lightning
             ),
             FordCar(
                 name = "Ford F-150 Platinum",
@@ -124,7 +134,8 @@ object FordCarRepository {
                 tagline = "Luxury, power, and everyday confidence.",
                 transmission = "10-Speed Automatic",
                 fuel = "Hybrid",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_f150_platinum
             ),
             FordCar(
                 name = "Ford Bronco",
@@ -135,7 +146,8 @@ object FordCarRepository {
                 tagline = "Adventure starts where the road ends.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_bronco
             ),
             FordCar(
                 name = "Ford Bronco Raptor",
@@ -146,7 +158,8 @@ object FordCarRepository {
                 tagline = "Extreme off-road SUV with savage power.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_bronco_raptor
             ),
             FordCar(
                 name = "Ford Bronco Sport",
@@ -157,7 +170,8 @@ object FordCarRepository {
                 tagline = "Compact adventure machine for daily escape.",
                 transmission = "8-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_bronco_sport
             ),
             FordCar(
                 name = "Ford Everest Titanium",
@@ -168,7 +182,8 @@ object FordCarRepository {
                 tagline = "Built for family adventure and long journeys.",
                 transmission = "10-Speed Automatic",
                 fuel = "Diesel",
-                seats = "7 Seats"
+                seats = "7 Seats",
+                imageRes = R.drawable.ford_everest_titanium
             ),
             FordCar(
                 name = "Ford Explorer ST",
@@ -179,7 +194,8 @@ object FordCarRepository {
                 tagline = "Performance SUV with premium comfort.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "7 Seats"
+                seats = "7 Seats",
+                imageRes = R.drawable.ford_explorer_st
             ),
             FordCar(
                 name = "Ford Expedition Platinum",
@@ -190,7 +206,8 @@ object FordCarRepository {
                 tagline = "Big comfort for big adventures.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "8 Seats"
+                seats = "8 Seats",
+                imageRes = R.drawable.ford_expedition_platinum
             ),
             FordCar(
                 name = "Ford Edge ST",
@@ -201,7 +218,8 @@ object FordCarRepository {
                 tagline = "Sporty crossover with confident performance.",
                 transmission = "7-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_edge_st
             ),
             FordCar(
                 name = "Ford Escape Hybrid",
@@ -212,7 +230,8 @@ object FordCarRepository {
                 tagline = "Efficient SUV for modern urban journeys.",
                 transmission = "eCVT",
                 fuel = "Hybrid",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_escape_hybrid
             ),
             FordCar(
                 name = "Ford Puma ST",
@@ -223,7 +242,8 @@ object FordCarRepository {
                 tagline = "Compact crossover with hot-hatch energy.",
                 transmission = "6-Speed Manual",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_puma_st
             ),
             FordCar(
                 name = "Ford Focus RS",
@@ -234,7 +254,8 @@ object FordCarRepository {
                 tagline = "Compact hatch with rally DNA.",
                 transmission = "6-Speed Manual",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_focus_rs
             ),
             FordCar(
                 name = "Ford Focus ST",
@@ -245,7 +266,8 @@ object FordCarRepository {
                 tagline = "Everyday hatchback with serious punch.",
                 transmission = "6-Speed Manual",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_focus_st
             ),
             FordCar(
                 name = "Ford Fiesta ST",
@@ -256,7 +278,8 @@ object FordCarRepository {
                 tagline = "Small body, big attitude.",
                 transmission = "6-Speed Manual",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_fiesta_st
             ),
             FordCar(
                 name = "Ford Mondeo",
@@ -267,7 +290,8 @@ object FordCarRepository {
                 tagline = "Elegant sedan for smooth daily driving.",
                 transmission = "6-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_mondeo
             ),
             FordCar(
                 name = "Ford Taurus SHO",
@@ -278,7 +302,8 @@ object FordCarRepository {
                 tagline = "Sleeper sedan with turbocharged confidence.",
                 transmission = "6-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_taurus_sho
             ),
             FordCar(
                 name = "Ford Maverick Hybrid",
@@ -289,7 +314,8 @@ object FordCarRepository {
                 tagline = "Smart pickup for urban explorers.",
                 transmission = "CVT",
                 fuel = "Hybrid",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_maverick_hybrid
             ),
             FordCar(
                 name = "Ford Transit Custom",
@@ -300,7 +326,8 @@ object FordCarRepository {
                 tagline = "Business van with modern practicality.",
                 transmission = "8-Speed Automatic",
                 fuel = "Diesel",
-                seats = "8 Seats"
+                seats = "8 Seats",
+                imageRes = R.drawable.ford_transit_custom
             ),
             FordCar(
                 name = "Ford Transit Trail",
@@ -311,7 +338,8 @@ object FordCarRepository {
                 tagline = "Adventure van for road trip freedom.",
                 transmission = "10-Speed Automatic",
                 fuel = "Petrol",
-                seats = "8 Seats"
+                seats = "8 Seats",
+                imageRes = R.drawable.ford_transit_trail
             ),
             FordCar(
                 name = "Ford Crown Victoria",
@@ -322,7 +350,8 @@ object FordCarRepository {
                 tagline = "Classic American sedan with iconic presence.",
                 transmission = "4-Speed Automatic",
                 fuel = "Petrol",
-                seats = "5 Seats"
+                seats = "5 Seats",
+                imageRes = R.drawable.ford_crown_victoria
             ),
             FordCar(
                 name = "Ford Thunderbird",
@@ -333,7 +362,8 @@ object FordCarRepository {
                 tagline = "Classic elegance with American soul.",
                 transmission = "5-Speed Automatic",
                 fuel = "Petrol",
-                seats = "2 Seats"
+                seats = "2 Seats",
+                imageRes = R.drawable.ford_thunderbird
             ),
             FordCar(
                 name = "Ford Capri RS3100",
@@ -344,7 +374,8 @@ object FordCarRepository {
                 tagline = "Retro coupe with European racing flavor.",
                 transmission = "4-Speed Manual",
                 fuel = "Petrol",
-                seats = "4 Seats"
+                seats = "4 Seats",
+                imageRes = R.drawable.ford_capri_rs3100
             )
         )
     }

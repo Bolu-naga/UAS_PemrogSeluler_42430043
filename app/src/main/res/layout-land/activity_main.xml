@@ -28,7 +28,7 @@
                 android:id="@+id/tvAppLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="FORD NEON GARAGE"
+                android:text="FORD GARAGE"
                 android:textColor="@color/ford_cyan"
                 android:textSize="11sp"
                 android:textStyle="bold"

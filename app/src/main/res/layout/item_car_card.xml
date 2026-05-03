@@ -8,6 +8,18 @@
     android:padding="18dp"
     android:layout_marginBottom="10dp">
 
+    <ImageView
+        android:id="@+id/ivCardCarImage"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:src="@drawable/ford_mustang_gt"
+        android:contentDescription="Car Image"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:background="@color/ford_bg_card"
+        android:padding="8dp"
+        android:layout_marginBottom="14dp" />
+
     <!-- Top Row: Name + Favorite -->
     <LinearLayout
         android:id="@+id/topRow"

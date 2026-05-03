@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import android.widget.ImageView
 
 class FordCarAdapter(
     private val context: Context,
@@ -36,6 +37,7 @@ class FordCarAdapter(
             view = LayoutInflater.from(context).inflate(R.layout.item_car_card, parent, false)
 
             holder = ViewHolder(
+                ivCarImage = view.findViewById(R.id.ivCardCarImage),
                 tvCarName = view.findViewById(R.id.tvCardCarName),
                 tvMeta = view.findViewById(R.id.tvCardMeta),
                 tvTagline = view.findViewById(R.id.tvCardTagline),
@@ -54,6 +56,9 @@ class FordCarAdapter(
         }
 
         val car = cars[position]
+
+        holder.ivCarImage.setImageResource(car.imageRes)
+        holder.ivCarImage.contentDescription = car.name
 
         holder.tvCarName.text = car.name
         holder.tvMeta.text = "${car.category} • ${car.engine}"
@@ -94,6 +99,7 @@ class FordCarAdapter(
     }
 
     private data class ViewHolder(
+        val ivCarImage: ImageView,
         val tvCarName: TextView,
         val tvMeta: TextView,
         val tvTagline: TextView,

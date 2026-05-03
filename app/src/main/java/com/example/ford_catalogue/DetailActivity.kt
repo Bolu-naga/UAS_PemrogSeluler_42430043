@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.view.View
 
 class DetailActivity : AppCompatActivity() {
@@ -21,13 +22,12 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var tvFuelValue: TextView
     private lateinit var tvSeatsValue: TextView
     private lateinit var tvSpecDescription: TextView
-    private lateinit var tvCarHeroIcon: TextView
     private lateinit var tvHeroDetailText: TextView
     private lateinit var btnFavoriteDetail: TextView
     private lateinit var btnGallery: Button
     private lateinit var btnCompare: Button
     private lateinit var btnBack: Button
-
+    private lateinit var ivDetailCarImage: ImageView
     private var isFavorite = false
     private var carName = "Ford Car"
 
@@ -44,6 +44,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        ivDetailCarImage = findViewById(R.id.ivDetailCarImage)
         tvCarName = findViewById(R.id.tvCarName)
         tvCarTagline = findViewById(R.id.tvCarTagline)
         tvCategoryBadge = findViewById(R.id.tvCategoryBadge)
@@ -54,7 +55,6 @@ class DetailActivity : AppCompatActivity() {
         tvFuelValue = findViewById(R.id.tvFuelValue)
         tvSeatsValue = findViewById(R.id.tvSeatsValue)
         tvSpecDescription = findViewById(R.id.tvSpecDescription)
-        tvCarHeroIcon = findViewById(R.id.tvCarHeroIcon)
         tvHeroDetailText = findViewById(R.id.tvHeroDetailText)
         btnFavoriteDetail = findViewById(R.id.btnFavoriteDetail)
         btnGallery = findViewById(R.id.btnGallery)
@@ -73,6 +73,10 @@ class DetailActivity : AppCompatActivity() {
         val carTransmission = intent.getStringExtra("CAR_TRANSMISSION") ?: "Unknown Transmission"
         val carFuel = intent.getStringExtra("CAR_FUEL") ?: "Unknown Fuel"
         val carSeats = intent.getStringExtra("CAR_SEATS") ?: "Unknown Seats"
+        val carImageRes = intent.getIntExtra("CAR_IMAGE_RES", R.drawable.ford_logo)
+
+        ivDetailCarImage.setImageResource(carImageRes)
+        ivDetailCarImage.contentDescription = carName
 
         tvCarName.text = carName
         tvCarTagline.text = carTagline
@@ -84,7 +88,6 @@ class DetailActivity : AppCompatActivity() {
         tvFuelValue.text = carFuel
         tvSeatsValue.text = carSeats
 
-        tvCarHeroIcon.text = getHeroText(carName, carCategory)
         tvHeroDetailText.text = getHeroSubtitle(carCategory)
 
         tvSpecDescription.text = buildGarageNote(

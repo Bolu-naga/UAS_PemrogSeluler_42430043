@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("CAR_TRANSMISSION", selectedCar.transmission)
             intent.putExtra("CAR_FUEL", selectedCar.fuel)
             intent.putExtra("CAR_SEATS", selectedCar.seats)
+            intent.putExtra("CAR_IMAGE_RES", selectedCar.imageRes)
 
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)        }
