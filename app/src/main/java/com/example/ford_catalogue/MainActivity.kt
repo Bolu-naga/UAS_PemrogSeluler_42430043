@@ -11,9 +11,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import android.view.animation.AnimationUtils
+import android.util.Log
 
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG = "FORD_UAS_PEMROGSELULER"
+    }
 
     private lateinit var etSearch: EditText
     private lateinit var btnSearch: Button
@@ -42,49 +47,88 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        initViews()
-        setupCategoryChips()
-        showCars(allCars)
+        try {
+            setContentView(R.layout.activity_main)
+            Log.i(TAG, "NIM: 42430043 - Aplikasi Ford Garage berhasil dibuka")
+            Log.d(TAG, "Nama: Paul - Katalog mobil Ford aktif")
 
-        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        lvCars.startAnimation(fadeIn)
+            Log.i(TAG, "MainActivity berhasil dibuka")
 
-        btnSearch.setOnClickListener {
-            currentKeyword = etSearch.text.toString().trim()
-            applyFilters(showToast = true)
+            initViews()
+            setupCategoryChips()
+            showCars(allCars)
+
+            btnSearch.setOnClickListener {
+                try {
+                    currentKeyword = etSearch.text.toString().trim()
+                    Log.d(TAG, "Search keyword: $currentKeyword")
+                    applyFilters(showToast = true)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error saat search mobil", e)
+                    Toast.makeText(this, "Terjadi kesalahan saat mencari mobil", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            btnSortAsc.setOnClickListener {
+                try {
+                    bubbleSort(ascending = true)
+                    refreshListView()
+                    Log.d(TAG, "Data diurutkan A-Z")
+                    Toast.makeText(this, "Garage diurutkan dari A sampai Z", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error saat sort A-Z", e)
+                    Toast.makeText(this, "Gagal mengurutkan data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            btnSortDesc.setOnClickListener {
+                try {
+                    bubbleSort(ascending = false)
+                    refreshListView()
+                    Log.d(TAG, "Data diurutkan Z-A")
+                    Toast.makeText(this, "Garage diurutkan dari Z sampai A", Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error saat sort Z-A", e)
+                    Toast.makeText(this, "Gagal mengurutkan data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            lvCars.setOnItemClickListener { _, _, position, _ ->
+                try {
+                    if (position < 0 || position >= displayedCars.size) {
+                        Log.e(TAG, "Invalid car position: $position")
+                        Toast.makeText(this, "Data mobil tidak valid", Toast.LENGTH_SHORT).show()
+                        return@setOnItemClickListener
+                    }
+
+                    val selectedCar = displayedCars[position]
+                    Log.i(TAG, "Mobil dipilih: ${selectedCar.name}")
+
+                    val intent = Intent(this, DetailActivity::class.java)
+                    intent.putExtra("CAR_NAME", selectedCar.name)
+                    intent.putExtra("CAR_CATEGORY", selectedCar.category)
+                    intent.putExtra("CAR_ENGINE", selectedCar.engine)
+                    intent.putExtra("CAR_POWER", selectedCar.power)
+                    intent.putExtra("CAR_PRICE", selectedCar.price)
+                    intent.putExtra("CAR_TAGLINE", selectedCar.tagline)
+                    intent.putExtra("CAR_TRANSMISSION", selectedCar.transmission)
+                    intent.putExtra("CAR_FUEL", selectedCar.fuel)
+                    intent.putExtra("CAR_SEATS", selectedCar.seats)
+                    intent.putExtra("CAR_IMAGE_RES", selectedCar.imageRes)
+
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error saat membuka detail mobil", e)
+                    Toast.makeText(this, "Gagal membuka detail mobil", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Error fatal di MainActivity", e)
+            Toast.makeText(this, "Terjadi kesalahan pada halaman utama", Toast.LENGTH_LONG).show()
         }
-
-        btnSortAsc.setOnClickListener {
-            bubbleSort(ascending = true)
-            refreshListView()
-            Toast.makeText(this, "Garage diurutkan dari A sampai Z", Toast.LENGTH_SHORT).show()
-        }
-
-        btnSortDesc.setOnClickListener {
-            bubbleSort(ascending = false)
-            refreshListView()
-            Toast.makeText(this, "Garage diurutkan dari Z sampai A", Toast.LENGTH_SHORT).show()
-        }
-
-        lvCars.setOnItemClickListener { _, _, position, _ ->
-            val selectedCar = displayedCars[position]
-
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra("CAR_NAME", selectedCar.name)
-            intent.putExtra("CAR_CATEGORY", selectedCar.category)
-            intent.putExtra("CAR_ENGINE", selectedCar.engine)
-            intent.putExtra("CAR_POWER", selectedCar.power)
-            intent.putExtra("CAR_PRICE", selectedCar.price)
-            intent.putExtra("CAR_TAGLINE", selectedCar.tagline)
-            intent.putExtra("CAR_TRANSMISSION", selectedCar.transmission)
-            intent.putExtra("CAR_FUEL", selectedCar.fuel)
-            intent.putExtra("CAR_SEATS", selectedCar.seats)
-            intent.putExtra("CAR_IMAGE_RES", selectedCar.imageRes)
-
-            startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)        }
     }
 
     private fun initViews() {
@@ -163,40 +207,47 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun applyFilters(showToast: Boolean) {
-        val filteredCars = ArrayList<FordCar>()
+        try {
+            val filteredCars = ArrayList<FordCar>()
 
-        for (car in allCars) {
-            val matchCategory = selectedCategory == "All" ||
-                    car.category.equals(selectedCategory, ignoreCase = true)
+            for (car in allCars) {
+                val matchCategory = selectedCategory == "All" ||
+                        car.category.equals(selectedCategory, ignoreCase = true)
 
-            val matchKeyword = currentKeyword.isEmpty() ||
-                    car.name.contains(currentKeyword, ignoreCase = true) ||
-                    car.category.contains(currentKeyword, ignoreCase = true) ||
-                    car.engine.contains(currentKeyword, ignoreCase = true) ||
-                    car.power.contains(currentKeyword, ignoreCase = true) ||
-                    car.price.contains(currentKeyword, ignoreCase = true) ||
-                    car.tagline.contains(currentKeyword, ignoreCase = true) ||
-                    car.transmission.contains(currentKeyword, ignoreCase = true) ||
-                    car.fuel.contains(currentKeyword, ignoreCase = true) ||
-                    car.seats.contains(currentKeyword, ignoreCase = true)
+                val matchKeyword = currentKeyword.isEmpty() ||
+                        car.name.contains(currentKeyword, ignoreCase = true) ||
+                        car.category.contains(currentKeyword, ignoreCase = true) ||
+                        car.engine.contains(currentKeyword, ignoreCase = true) ||
+                        car.power.contains(currentKeyword, ignoreCase = true) ||
+                        car.price.contains(currentKeyword, ignoreCase = true) ||
+                        car.tagline.contains(currentKeyword, ignoreCase = true) ||
+                        car.transmission.contains(currentKeyword, ignoreCase = true) ||
+                        car.fuel.contains(currentKeyword, ignoreCase = true) ||
+                        car.seats.contains(currentKeyword, ignoreCase = true)
 
-            if (matchCategory && matchKeyword) {
-                filteredCars.add(car)
-            }
-        }
-
-        showCars(filteredCars)
-
-        if (showToast) {
-            val message = if (filteredCars.isEmpty()) {
-                "Tidak ada mobil yang cocok"
-            } else if (selectedCategory == "All" && currentKeyword.isEmpty()) {
-                "Menampilkan semua koleksi Ford"
-            } else {
-                "${filteredCars.size} mobil ditemukan"
+                if (matchCategory && matchKeyword) {
+                    filteredCars.add(car)
+                }
             }
 
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "Filter kategori: $selectedCategory, keyword: $currentKeyword, hasil: ${filteredCars.size}")
+
+            showCars(filteredCars)
+
+            if (showToast) {
+                val message = if (filteredCars.isEmpty()) {
+                    "Tidak ada mobil yang cocok"
+                } else if (selectedCategory == "All" && currentKeyword.isEmpty()) {
+                    "Menampilkan semua koleksi Ford"
+                } else {
+                    "${filteredCars.size} mobil ditemukan"
+                }
+
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error saat filter data mobil", e)
+            Toast.makeText(this, "Gagal memfilter data mobil", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -208,8 +259,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshListView() {
-        val adapter = FordCarAdapter(this, displayedCars)
-        lvCars.adapter = adapter
+        try {
+            val adapter = FordCarAdapter(this, displayedCars)
+            lvCars.adapter = adapter
+
+            Log.d(TAG, "ListView diperbarui dengan ${displayedCars.size} mobil")
+        } catch (e: Exception) {
+            Log.e(TAG, "Error saat refresh ListView", e)
+            Toast.makeText(this, "Gagal menampilkan daftar mobil", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun updateEmptyState() {

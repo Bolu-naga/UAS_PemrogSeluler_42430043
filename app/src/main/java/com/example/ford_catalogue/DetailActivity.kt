@@ -8,9 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.util.Log
 import android.view.View
 
 class DetailActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG = "DetailActivity"
+    }
 
     private lateinit var tvCarName: TextView
     private lateinit var tvCarTagline: TextView
@@ -33,14 +38,24 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
 
-        initViews()
-        loadCarData()
-        setupActions()
+        try {
+            setContentView(R.layout.activity_detail)
 
-        val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        tvCarName.startAnimation(fadeIn)
+            Log.i(TAG, "DetailActivity berhasil dibuka")
+
+            initViews()
+            loadCarData()
+            setupActions()
+
+            val fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+            tvCarName.startAnimation(fadeIn)
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Error fatal di DetailActivity", e)
+            Toast.makeText(this, "Terjadi kesalahan saat membuka detail mobil", Toast.LENGTH_LONG).show()
+            finish()
+        }
     }
 
     private fun initViews() {
@@ -63,40 +78,47 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun loadCarData() {
-        carName = intent.getStringExtra("CAR_NAME") ?: "Ford Car"
+        try {
+            carName = intent.getStringExtra("CAR_NAME") ?: "Ford Car"
 
-        val carCategory = intent.getStringExtra("CAR_CATEGORY") ?: "Unknown"
-        val carEngine = intent.getStringExtra("CAR_ENGINE") ?: "Unknown Engine"
-        val carPower = intent.getStringExtra("CAR_POWER") ?: "Unknown Power"
-        val carPrice = intent.getStringExtra("CAR_PRICE") ?: "Unknown Price"
-        val carTagline = intent.getStringExtra("CAR_TAGLINE") ?: "No tagline available."
-        val carTransmission = intent.getStringExtra("CAR_TRANSMISSION") ?: "Unknown Transmission"
-        val carFuel = intent.getStringExtra("CAR_FUEL") ?: "Unknown Fuel"
-        val carSeats = intent.getStringExtra("CAR_SEATS") ?: "Unknown Seats"
-        val carImageRes = intent.getIntExtra("CAR_IMAGE_RES", R.drawable.ford_logo)
+            val carCategory = intent.getStringExtra("CAR_CATEGORY") ?: "Unknown"
+            val carEngine = intent.getStringExtra("CAR_ENGINE") ?: "Unknown Engine"
+            val carPower = intent.getStringExtra("CAR_POWER") ?: "Unknown Power"
+            val carPrice = intent.getStringExtra("CAR_PRICE") ?: "Unknown Price"
+            val carTagline = intent.getStringExtra("CAR_TAGLINE") ?: "No tagline available."
+            val carTransmission = intent.getStringExtra("CAR_TRANSMISSION") ?: "Unknown Transmission"
+            val carFuel = intent.getStringExtra("CAR_FUEL") ?: "Unknown Fuel"
+            val carSeats = intent.getStringExtra("CAR_SEATS") ?: "Unknown Seats"
+            val carImageRes = intent.getIntExtra("CAR_IMAGE_RES", R.drawable.ford_mustang_gt)
 
-        ivDetailCarImage.setImageResource(carImageRes)
-        ivDetailCarImage.contentDescription = carName
+            Log.d(TAG, "Memuat detail mobil: $carName")
 
-        tvCarName.text = carName
-        tvCarTagline.text = carTagline
-        tvCategoryBadge.text = carCategory.uppercase()
-        tvPriceValue.text = carPrice
-        tvEngineValue.text = carEngine
-        tvPowerValue.text = carPower
-        tvTransmissionValue.text = simplifyTransmission(carTransmission)
-        tvFuelValue.text = carFuel
-        tvSeatsValue.text = carSeats
+            ivDetailCarImage.setImageResource(carImageRes)
+            ivDetailCarImage.contentDescription = carName
 
-        tvHeroDetailText.text = getHeroSubtitle(carCategory)
+            tvCarName.text = carName
+            tvCarTagline.text = carTagline
+            tvCategoryBadge.text = carCategory.uppercase()
+            tvPriceValue.text = carPrice
+            tvEngineValue.text = carEngine
+            tvPowerValue.text = carPower
+            tvTransmissionValue.text = simplifyTransmission(carTransmission)
+            tvFuelValue.text = carFuel
+            tvSeatsValue.text = carSeats
+            tvHeroDetailText.text = getHeroSubtitle(carCategory)
 
-        tvSpecDescription.text = buildGarageNote(
-            name = carName,
-            category = carCategory,
-            engine = carEngine,
-            power = carPower,
-            fuel = carFuel
-        )
+            tvSpecDescription.text = buildGarageNote(
+                name = carName,
+                category = carCategory,
+                engine = carEngine,
+                power = carPower,
+                fuel = carFuel
+            )
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Error saat load data detail mobil", e)
+            Toast.makeText(this, "Gagal memuat data mobil", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupActions() {

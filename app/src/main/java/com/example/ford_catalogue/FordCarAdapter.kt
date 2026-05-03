@@ -9,11 +9,16 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import android.widget.ImageView
+import android.util.Log
 
 class FordCarAdapter(
     private val context: Context,
     private val cars: List<FordCar>
 ) : BaseAdapter() {
+
+    companion object {
+        private const val TAG = "FordCarAdapter"
+    }
 
     private val favoriteCars = mutableSetOf<String>()
 
@@ -33,69 +38,104 @@ class FordCarAdapter(
         val view: View
         val holder: ViewHolder
 
-        if (convertView == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_car_card, parent, false)
+        try {
+            if (convertView == null) {
+                view = LayoutInflater.from(context).inflate(R.layout.item_car_card, parent, false)
 
-            holder = ViewHolder(
-                ivCarImage = view.findViewById(R.id.ivCardCarImage),
-                tvCarName = view.findViewById(R.id.tvCardCarName),
-                tvMeta = view.findViewById(R.id.tvCardMeta),
-                tvTagline = view.findViewById(R.id.tvCardTagline),
-                tvPower = view.findViewById(R.id.tvCardPower),
-                tvFuel = view.findViewById(R.id.tvCardFuel),
-                tvSeats = view.findViewById(R.id.tvCardSeats),
-                tvCategory = view.findViewById(R.id.tvCardCategory),
-                tvPrice = view.findViewById(R.id.tvCardPrice),
-                tvFavorite = view.findViewById(R.id.tvFavorite)
-            )
+                holder = ViewHolder(
+                    ivCarImage = view.findViewById(R.id.ivCardCarImage),
+                    tvCarName = view.findViewById(R.id.tvCardCarName),
+                    tvMeta = view.findViewById(R.id.tvCardMeta),
+                    tvTagline = view.findViewById(R.id.tvCardTagline),
+                    tvPower = view.findViewById(R.id.tvCardPower),
+                    tvFuel = view.findViewById(R.id.tvCardFuel),
+                    tvSeats = view.findViewById(R.id.tvCardSeats),
+                    tvCategory = view.findViewById(R.id.tvCardCategory),
+                    tvPrice = view.findViewById(R.id.tvCardPrice),
+                    tvFavorite = view.findViewById(R.id.tvFavorite)
+                )
 
-            view.tag = holder
-        } else {
-            view = convertView
-            holder = view.tag as ViewHolder
-        }
-
-        val car = cars[position]
-
-        holder.ivCarImage.setImageResource(car.imageRes)
-        holder.ivCarImage.contentDescription = car.name
-
-        holder.tvCarName.text = car.name
-        holder.tvMeta.text = "${car.category} • ${car.engine}"
-        holder.tvTagline.text = car.tagline
-        holder.tvPower.text = car.power
-        holder.tvFuel.text = car.fuel
-        holder.tvSeats.text = car.seats
-        holder.tvCategory.text = car.category.uppercase()
-        holder.tvPrice.text = car.price
-
-        val isFavorite = favoriteCars.contains(car.name)
-
-        if (isFavorite) {
-            holder.tvFavorite.text = "♥"
-            holder.tvFavorite.setTextColor(
-                ContextCompat.getColor(context, R.color.ford_red)
-            )
-        } else {
-            holder.tvFavorite.text = "♡"
-            holder.tvFavorite.setTextColor(
-                ContextCompat.getColor(context, R.color.ford_text_soft)
-            )
-        }
-
-        holder.tvFavorite.setOnClickListener {
-            if (favoriteCars.contains(car.name)) {
-                favoriteCars.remove(car.name)
-                Toast.makeText(context, "${car.name} dihapus dari favorit", Toast.LENGTH_SHORT).show()
+                view.tag = holder
             } else {
-                favoriteCars.add(car.name)
-                Toast.makeText(context, "${car.name} masuk ke garage favorit", Toast.LENGTH_SHORT).show()
+                view = convertView
+                holder = view.tag as ViewHolder
             }
 
-            notifyDataSetChanged()
-        }
+            val car = cars[position]
 
-        return view
+            holder.ivCarImage.setImageResource(car.imageRes)
+            holder.ivCarImage.contentDescription = car.name
+
+            holder.tvCarName.text = car.name
+            holder.tvMeta.text = "${car.category} • ${car.engine}"
+            holder.tvTagline.text = car.tagline
+            holder.tvPower.text = car.power
+            holder.tvFuel.text = car.fuel
+            holder.tvSeats.text = car.seats
+            holder.tvCategory.text = car.category.uppercase()
+            holder.tvPrice.text = car.price
+
+            Log.d(TAG, "Menampilkan card mobil: ${car.name}")
+
+            val isFavorite = favoriteCars.contains(car.name)
+
+            if (isFavorite) {
+                holder.tvFavorite.text = "♥"
+                holder.tvFavorite.setTextColor(
+                    ContextCompat.getColor(context, R.color.ford_red)
+                )
+            } else {
+                holder.tvFavorite.text = "♡"
+                holder.tvFavorite.setTextColor(
+                    ContextCompat.getColor(context, R.color.ford_text_soft)
+                )
+            }
+
+            holder.tvFavorite.setOnClickListener {
+                try {
+                    if (favoriteCars.contains(car.name)) {
+                        favoriteCars.remove(car.name)
+                        Log.i(TAG, "Favorite dihapus: ${car.name}")
+                        Toast.makeText(
+                            context,
+                            "${car.name} dihapus dari favorit",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        favoriteCars.add(car.name)
+                        Log.i(TAG, "Favorite ditambahkan: ${car.name}")
+                        Toast.makeText(
+                            context,
+                            "${car.name} masuk ke garage favorit",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    notifyDataSetChanged()
+                } catch (e: Exception) {
+                    Log.e(TAG, "Error saat update favorite", e)
+                    Toast.makeText(
+                        context,
+                        "Gagal mengubah favorite",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            return view
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Error saat bind card mobil pada posisi $position", e)
+
+            val fallbackView = TextView(context)
+            fallbackView.text = "Gagal menampilkan data mobil"
+            fallbackView.setTextColor(
+                ContextCompat.getColor(context, R.color.ford_text_main)
+            )
+            fallbackView.setPadding(24, 24, 24, 24)
+
+            return fallbackView
+        }
     }
 
     private data class ViewHolder(
